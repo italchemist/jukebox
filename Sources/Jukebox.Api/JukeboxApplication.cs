@@ -6,7 +6,7 @@ namespace Jukebox.Api {
 	public static class JukeboxApplication {
 		/// <summary>Initializes the <see cref="JukeboxApplication"/> class.</summary>
 		static JukeboxApplication() {
-			Configuration = new Configuration();
+			Configuration = new JukeboxConfiguration();
 		}
 
 		/// <summary>Reloads the application.</summary>
@@ -16,7 +16,7 @@ namespace Jukebox.Api {
 		}
 
 		/// <summary>Gets or sets configuration interface.</summary>
-		public static Configuration Configuration { get; private set; }
+		public static JukeboxConfiguration Configuration { get; private set; }
 
 		/// <summary>Occurs when user requests the application reload.</summary>
 		public static event EventHandler<EventArgs> ReloadRequested;

@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Jukebox.Api {
 	/// <summary>Player interface.</summary>
 	public interface IJukebox {
@@ -19,5 +21,8 @@ namespace Jukebox.Api {
 		
 		/// <summary>Gets music library.</summary>
 		IMusicLibrary MusicLibrary { get; }
+
+		/// <summary>Gets list of extensions.</summary>
+		List<IExtension> Extensions { get; }
 	}
 }

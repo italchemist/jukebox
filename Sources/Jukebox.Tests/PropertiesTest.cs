@@ -7,20 +7,20 @@ namespace Jukebox.Tests {
 	///to contain all PropertiesTest Unit Tests
 	///</summary>
 	[TestClass] public class PropertiesTest {
-		/// <summary>Set should set value of variable, get should return value of variable.</summary>
+		/// <summary>SetValue should set value of variable, get should return value of variable.</summary>
 		[TestMethod] public void SetShouldSetValueOfVariableTest() {
 			const string name = "variableName";
 			const string value = "variableValue";
 			var target = new Properties();
-			target.Set(name, value);
-			var actual = target.Get(name);
+			target.SetValue(name, value);
+			var actual = target.GetValue(name);
 			Assert.AreEqual(value, actual);
 		}
 
 		/// <summary>get should return null if no variable found.</summary>
 		[TestMethod] public void GetShouldReturnNullIfNoVariableFoundTest() {
 			var target = new Properties();
-			Assert.IsNull(target.Get("no_variable_found"));
+			Assert.IsNull(target.GetValue("no_variable_found"));
 		}
 	}
 }

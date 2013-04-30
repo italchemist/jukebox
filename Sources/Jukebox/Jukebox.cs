@@ -20,7 +20,7 @@ namespace Jukebox {
 			if (_currentTrack != null)
 				OnStateChanged(_currentTrack, JukeboxState.Play);
 			else
-				Next();
+				NextTrack();
 		}
 
 		/// <summary>Pauses playing.</summary>
@@ -29,7 +29,7 @@ namespace Jukebox {
 		}
 
 		/// <summary>Play next track.</summary>
-		public void Next() {
+		public void NextTrack() {
 			if (Playlist.Count >= 1) {
 				// TODO: currentTrack can be null
 				// TODO: send event "no more tracks"
@@ -53,20 +53,24 @@ namespace Jukebox {
 		public IMusicLibrary MusicLibrary { get; private set; }
 
 		/// <summary>Gets list of extensions.</summary>
-		public List<IExtension> Extensions { get; private set; }
+		public ICollection<IExtension> Extensions { get; private set; }
 
 		/// <summary>Called when track enqueued.</summary>
 		/// <param name="sender">The sender.</param>
 		/// <param name="args">The <see cref="PlaylistEventArgs"/> instance containing the event data.</param>
 		void OnTrackEnqueued(object sender, PlaylistEventArgs args) {
-			Extensions.ForEach(e => e.OnTrackEnqueued(args.Track));
+			foreach (var extension in Extensions) {
+				extension.OnTrackEnqueued(args.Track);
+			}
 		}
 
 		/// <summary>Called when state changed.</summary>
 		/// <param name="track">The track.</param>
 		/// <param name="state">The state.</param>
 		private void OnStateChanged(ITrack track, JukeboxState state) {
-			Extensions.ForEach(t => t.OnStateChanged(track, state));
+			foreach (var extension in Extensions) {
+				extension.OnStateChanged(track, state);
+			}
 			State = state;
 		}
 

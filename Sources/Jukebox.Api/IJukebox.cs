@@ -1,7 +1,7 @@
 ﻿
-using System.Collections.Generic;
-
 namespace Jukebox.Api {
+	using System.Collections.Generic;
+
 	/// <summary>Player interface.</summary>
 	public interface IJukebox {
 		/// <summary>Starts playing.</summary>
@@ -11,7 +11,7 @@ namespace Jukebox.Api {
 		void Pause();
 
 		/// <summary>Starts playing next track.</summary>
-		void Next();
+		void NextTrack();
 
 		/// <summary>Gets properties.</summary>
 		IProperties Properties { get; }
@@ -23,7 +23,7 @@ namespace Jukebox.Api {
 		IMusicLibrary MusicLibrary { get; }
 
 		/// <summary>Gets list of extensions.</summary>
-		List<IExtension> Extensions { get; }
+		ICollection<IExtension> Extensions { get; }
 
 		/// <summary>Gets state.</summary>
 		JukeboxState State { get; }

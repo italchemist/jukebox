@@ -48,8 +48,9 @@ namespace Jukebox.Api.Configuration {
 			var variables = extensionConfig.Vars.ToDictionary(cd => cd.Name, cd => cd.Value);
 			extension.OnInitialize(jukebox, variables);
 			jukebox.Extensions.Add(extension);
-			jukebox.Extensions.ForEach(x => x.OnExtensionLoaded(extension));
-
+			foreach (var x in jukebox.Extensions) {
+				x.OnExtensionLoaded(extension);
+			}
 			_loadedExtensions[extensionConfig.Name] = extension;
 		}
 
@@ -77,15 +78,15 @@ namespace Jukebox.Api.Configuration {
 		/// <returns>Extension instance.</returns>
 		private static IExtension Load(ExtensionConfig config) {
 			var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-			if (dir == null) throw new Exception();
+			if (dir == null) throw new InvalidOperationException("Path not found");
 
 			var assemblyFullPath = Path.Combine(dir, config.AssemblyPath);
 			var assembly = Assembly.LoadFile(assemblyFullPath);
 			var type = assembly.GetTypes().FirstOrDefault(t => t.GetInterfaces().Any(i => i.Name == "IExtension"));
-			if (type == null) throw new Exception("There is no type implementing IExtension interface");
+			if (type == null) throw new InvalidOperationException("There is no type implementing IExtension interface");
 
 			var iface = (IExtension)Activator.CreateInstance(type);
-			if (iface == null) throw new Exception("Can not create instance");
+			if (iface == null) throw new InvalidOperationException("Can not create instance");
 
 			return iface;
 		}

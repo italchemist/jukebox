@@ -9,7 +9,7 @@ namespace Jukebox {
 		/// <summary>Sets the value for the specified property.</summary>
 		/// <param name="name">Name of the property.</param>
 		/// <param name="value">Value of the property.</param>
-		public void Set(string name, string value) {
+		public void SetValue(string name, string value) {
 			_properties[name] = value;
 			OnPropertyChanged(this, new PropertiesEventArgs(name, value));
 		}
@@ -17,7 +17,7 @@ namespace Jukebox {
 		/// <summary>Gets the value of the property.</summary>
 		/// <param name="name">Name of the property.</param>
 		/// <returns>Value.</returns>
-		public string Get(string name) {
+		public string GetValue(string name) {
 			string value;
 			_properties.TryGetValue(name, out value);
 			return value;

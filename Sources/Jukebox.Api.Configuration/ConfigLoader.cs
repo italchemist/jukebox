@@ -4,7 +4,7 @@ namespace Jukebox.Api.Configuration {
 	using System.Xml.Serialization;
 
 	/// <summary>Config loader.</summary>
-	public sealed class ConfigLoader {
+	public static class ConfigLoader {
 		/// <summary>Loads configuration from file by specified path.</summary>
 		/// <param name="path">Path to file to load configuration from.</param>
 		/// <returns>Config.</returns>

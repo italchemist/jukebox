@@ -4,7 +4,7 @@ namespace Jukebox.Api.Configuration {
 	using System.Xml.Serialization;
 
 	/// <summary>Extension configuration.</summary>
-	public class ExtensionConfig {
+	public sealed class ExtensionConfig {
 		/// <summary>Gets or sets name.</summary>
 		[XmlElement("name")]
 		public string Name { get; set; }
@@ -20,6 +20,6 @@ namespace Jukebox.Api.Configuration {
 		/// <summary>Gets or sets variables.</summary>
 		[XmlArray("vars")]
 		[XmlArrayItem("var")]
-		public Collection<ConfigVariable> Vars { get; set; }
+		public Collection<ConfigVariable> Vars { get; private set; }
 	}
 }

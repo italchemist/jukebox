@@ -6,14 +6,14 @@ namespace Jukebox.Api.Configuration {
 
 	/// <summary>Configuration model.</summary>
 	[XmlRoot(ElementName = "config")]
-	public class Config {
+	public sealed class Config {
 		/// <summary>Gets or sets path.</summary>
 		public string Path { get; set; }
 
 		/// <summary>Gets or sets collection of extensions.</summary>
 		[XmlArray("extensionGroups")]
 		[XmlArrayItem("extensionsGroup")]
-		public Collection<ExtensionGroupConfig> ExtensionGroups { get; set; }
+		public Collection<ExtensionGroupConfig> ExtensionGroups { get; private set; }
 
 		public ExtensionConfig FindExtension(string name) {
 			return ExtensionGroups

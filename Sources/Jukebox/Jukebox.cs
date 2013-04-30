@@ -40,6 +40,9 @@ namespace Jukebox {
 				_currentTrack = null;
 		}
 
+		/// <summary>Gets state.</summary>
+		public JukeboxState State { get; private set; }
+
 		/// <summary>Gets properties.</summary>
 		public IProperties Properties { get; private set; }
 
@@ -64,6 +67,7 @@ namespace Jukebox {
 		/// <param name="state">The state.</param>
 		private void OnStateChanged(ITrack track, JukeboxState state) {
 			Extensions.ForEach(t => t.OnStateChanged(track, state));
+			State = state;
 		}
 
 		/// <summary>Gets current track.</summary>

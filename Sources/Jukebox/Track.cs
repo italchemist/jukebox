@@ -5,6 +5,24 @@ namespace Jukebox {
 
 	/// <summary>Music track interface.</summary>
 	public sealed class Track : ITrack {
+		/// <summary>Initializes a new instance of the <see cref="Track"/> class.</summary>
+		/// <param name="performer">The performer.</param>
+		/// <param name="title">The title.</param>
+		public Track(string performer, string title) {
+			Performer = performer;
+			Title = title;
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="Track"/> class.</summary>
+		/// <param name="performer">The performer.</param>
+		/// <param name="title">The title.</param>
+		/// <param name="state">State of the track.</param>
+		public Track(string performer, string title, TrackState state) {
+			Performer = performer;
+			Title = title;
+			State = state;
+		}
+
 		/// <summary>Gets or sets title.</summary>
 		public string Title { get; set; }
 

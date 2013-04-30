@@ -18,7 +18,9 @@ namespace Jukebox {
 		/// <param name="name">Name of the property.</param>
 		/// <returns>Value.</returns>
 		public string Get(string name) {
-			return _properties[name];
+			string value;
+			_properties.TryGetValue(name, out value);
+			return value;
 		}
 
 		/// <summary>Occurs when property changed.</summary>

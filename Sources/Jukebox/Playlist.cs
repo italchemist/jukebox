@@ -7,6 +7,16 @@ namespace Jukebox {
 
 	/// <summary>Playlist.</summary>
 	public sealed class Playlist : IPlaylist {
+		/// <summary>Initializes a new instance of the <see cref="Playlist"/> class.</summary>
+		public Playlist() {
+		}
+
+		/// <summary>Initializes a new instance of the <see cref="Playlist"/> class.</summary>
+		/// <param name="tracks">The tracks.</param>
+		public Playlist(IEnumerable<ITrack> tracks) {
+			_tracks.AddRange(tracks);
+		}
+
 		/// <summary>Enqueues specified track.</summary>
 		/// <param name="track">Track.</param>
 		public void Enqueue(ITrack track) {

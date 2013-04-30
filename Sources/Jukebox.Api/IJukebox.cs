@@ -24,5 +24,8 @@ namespace Jukebox.Api {
 
 		/// <summary>Gets list of extensions.</summary>
 		List<IExtension> Extensions { get; }
+
+		/// <summary>Gets state.</summary>
+		JukeboxState State { get; }
 	}
 }

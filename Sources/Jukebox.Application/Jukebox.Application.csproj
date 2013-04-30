@@ -36,8 +36,15 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigLoader.cs" />
+    <Compile Include="Configuration\ConfigVariable.cs" />
+    <Compile Include="Configuration\ExtensionConfig.cs" />
+    <Compile Include="Configuration\ExtensionGroupConfig.cs" />
+    <Compile Include="JukeboxApplicationHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

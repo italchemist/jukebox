@@ -13,7 +13,7 @@ namespace Jukebox.Api.Configuration {
 		/// <summary>Gets or sets collection of extensions.</summary>
 		[XmlArray("extensionGroups")]
 		[XmlArrayItem("extensionsGroup")]
-		public Collection<ExtensionGroupConfig> ExtensionGroups { get; private set; }
+		public Collection<ExtensionGroupConfig> ExtensionGroups { get; set; }
 
 		public ExtensionConfig FindExtension(string name) {
 			return ExtensionGroups

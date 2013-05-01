@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <extensionGroups>
+
+    <!-- Generic extensions -->
+    <extensionsGroup>
+      <name>misc</name>
+
+      <!-- Startup logo. Displays logo while jukebox is loading -->
+      <extensions>
+        <extension>
+          <name>startupLogo</name>
+          <path>Jukebox.Extensions.Misc.StartupLogo.dll</path>
+        </extension>
+      </extensions>
+    </extensionsGroup>
+
+  </extensionGroups>
+
+
+</config>

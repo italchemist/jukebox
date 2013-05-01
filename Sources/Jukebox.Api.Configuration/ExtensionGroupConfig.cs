@@ -16,6 +16,6 @@ namespace Jukebox.Api.Configuration {
 		/// <summary>Gets or sets collection of extensions.</summary>
 		[XmlArray("extensions")]
 		[XmlArrayItem("extension")]
-		public Collection<ExtensionConfig> Extensions { get; private set; }
+		public Collection<ExtensionConfig> Extensions { get; set; }
 	}
 }

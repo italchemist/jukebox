@@ -20,6 +20,6 @@ namespace Jukebox.Api.Configuration {
 		/// <summary>Gets or sets variables.</summary>
 		[XmlArray("vars")]
 		[XmlArrayItem("var")]
-		public Collection<ConfigVariable> Vars { get; private set; }
+		public Collection<ConfigVariable> Vars { get; set; }
 	}
 }

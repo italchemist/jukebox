@@ -2,15 +2,35 @@
 <config>
   <extensionGroups>
 
-    <!-- Generic extensions -->
+    <!-- Misc extensions -->
     <extensionsGroup>
       <name>misc</name>
 
-      <!-- Startup logo. Displays logo while jukebox is loading -->
       <extensions>
+        <!-- Startup Logo. Displays logo while jukebox is loading -->
         <extension>
           <name>startupLogo</name>
           <path>Jukebox.Extensions.Misc.StartupLogo.dll</path>
+        </extension>
+
+        <!-- Tray Control Center. -->
+        <extension>
+          <name>trayControlCenter</name>
+          <path>Jukebox.Extensions.Interfaces.TrayControlCenter.dll</path>
+        </extension>
+      </extensions>
+    </extensionsGroup>
+
+
+    <!-- Generic extensions -->
+    <extensionsGroup>
+      <name>generic</name>
+
+      <extensions>
+        <!-- Startup Logo. Displays logo while jukebox is loading -->
+        <extension>
+          <name>downloadFile</name>
+          <path>Jukebox.Extensions.TrackProviders.DownloadFile.dll</path>
         </extension>
       </extensions>
     </extensionsGroup>

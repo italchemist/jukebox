@@ -20,6 +20,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.Misc.StartupLogo", "Jukebox.Extensions.Misc.StartupLogo\Jukebox.Extensions.Misc.StartupLogo.csproj", "{8D23B01C-D2C5-4837-BE81-98A88F35895E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.Interfaces.TrayControlCenter", "Jukebox.Extensions.Interfaces.TrayControlCenter\Jukebox.Extensions.Interfaces.TrayControlCenter.csproj", "{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.TrackProviders.DownloadFile", "Jukebox.Extensions.TrackProviders.DownloadFile\Jukebox.Extensions.TrackProviders.DownloadFile.csproj", "{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2860C2D6-3695-46C1-A53A-82B8AE1BC76B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Jukebox.vsmdi
@@ -93,6 +104,26 @@ Global
 		{8D23B01C-D2C5-4837-BE81-98A88F35895E}.Release|Mixed Platforms.Build.0 = Release|x86
 		{8D23B01C-D2C5-4837-BE81-98A88F35895E}.Release|x86.ActiveCfg = Release|x86
 		{8D23B01C-D2C5-4837-BE81-98A88F35895E}.Release|x86.Build.0 = Release|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Debug|x86.ActiveCfg = Debug|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Debug|x86.Build.0 = Debug|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Release|Any CPU.ActiveCfg = Release|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Release|x86.ActiveCfg = Release|x86
+		{7DB6F72C-C7AD-4AA4-9F92-28A16DFA148B}.Release|x86.Build.0 = Release|x86
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8AF04E86-93D5-4CDF-9426-DFB89E7EF83F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -32,6 +32,12 @@
           <name>downloadFile</name>
           <path>Jukebox.Extensions.TrackProviders.DownloadFile.dll</path>
         </extension>
+
+        <!-- Vk.Com -->
+        <extension>
+          <name>vkCom</name>
+          <path>Jukebox.Extensions.TrackProviders.VkCom.dll</path>
+        </extension>
       </extensions>
     </extensionsGroup>
 

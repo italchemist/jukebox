@@ -41,6 +41,25 @@
       </extensions>
     </extensionsGroup>
 
+    <!-- Generic extensions -->
+    <extensionsGroup>
+      <name>interfaces</name>
+
+      <extensions>
+        <!-- Web interface. -->
+        <extension>
+          <name>web</name>
+          <path>Jukebox.Extensions.Interfaces.Web.dll</path>
+          <vars>
+            <var name="title" value="Jukebox Internet Radio Station" />
+            <var name="message" value="Collaboratiove Radio Station" />
+            <var name="streamPath" value="http://localhost:8080/stream.mp3" />
+            <var name="host" value="http://localhost:8080" />
+          </vars>
+        </extension>
+      </extensions>
+    </extensionsGroup>
+
   </extensionGroups>
 
 

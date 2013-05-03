@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.TrackPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Api.OAuth", "Jukebox.Api.OAuth\Jukebox.Api.OAuth.csproj", "{7781F4D3-7A4A-4348-B130-DD7521C8A4A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.Interfaces.Web", "Jukebox.Extensions.Interfaces.Web\Jukebox.Extensions.Interfaces.Web.csproj", "{45B26B03-5671-4BCA-BEE2-EA8073096D50}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Jukebox.vsmdi
@@ -148,6 +150,16 @@ Global
 		{7781F4D3-7A4A-4348-B130-DD7521C8A4A6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7781F4D3-7A4A-4348-B130-DD7521C8A4A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7781F4D3-7A4A-4348-B130-DD7521C8A4A6}.Release|x86.ActiveCfg = Release|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{45B26B03-5671-4BCA-BEE2-EA8073096D50}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,6 +18,6 @@ namespace Jukebox.Tests.Shared {
 				x.Title.ToLower().Contains(query.ToLower()));
 		}
 
-		private List<ITrack> _tracks;
+		private readonly List<ITrack> _tracks;
 	}
 }

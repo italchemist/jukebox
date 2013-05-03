@@ -4,9 +4,10 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 	using System.Collections.Generic;
 	using System.Net;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading;
-	using System.Windows.Forms;
 	using Api;
+	using Api.OAuth;
 
 	/// <summary>Track providers from vk.com.</summary>
 	public class VkComTracksProvider : Extension {
@@ -22,11 +23,14 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 		/// <summary>Called when extension start.</summary>
 		/// <param name="jukebox">The jukebox.</param>
 		private void OnExtensionThreadStart(IJukebox jukebox) {
-			Application.EnableVisualStyles();
-			var form = new AuthenticationForm();
-			Application.Run(form);
-			_accessToken = form.AccessToken;
-			jukebox.MusicLibrary.AddTracksProvider(this);
+			var oauth = new OAuthAuthentication(new Uri(AuthQueryUri));
+			oauth.Navigated += (sender, args) => {
+				if (String.IsNullOrEmpty(args.Uri.Fragment)) return;
+				var r = new Regex("access_token=(.*)&expires_in");
+				_accessToken = r.Match(args.Uri.Fragment).Groups[1].Value;
+				jukebox.MusicLibrary.AddTracksProvider(this);
+			};
+			oauth.Authenicate();
 		}
 
 		/// <summary>Called when search requested.</summary>
@@ -54,7 +58,7 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 		/// <returns></returns>
 		private JsonArray RequestTracksArray(string query) {
 			var webClient = new WebClient {Encoding = Encoding.UTF8};
-			var queryStr = string.Format("https://api.vk.com/method/audio.search?q={0}&access_token={1}", query, _accessToken);
+			var queryStr = string.Format(AudioQueryUri, query, _accessToken);
 			var response = webClient.DownloadString(queryStr);
 			var responseObj = (JsonObject) SimpleJson.DeserializeObject(response);
 			var responseArr = (JsonArray) responseObj["response"];
@@ -63,5 +67,11 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 
 		/// <summary>The vk.com access token.</summary>
 		private string _accessToken;
+
+		/// <summary>The vk.com authntication url.</summary>
+		private const string AuthQueryUri = "https://oauth.vk.com/authorize?response_type=token&redirect_uri=vk.com&client_id=3431166&scope=8&display=popup";
+
+		/// <summary>Audio query uri.</summary>
+		private const string AudioQueryUri = "https://api.vk.com/method/audio.search?q={0}&access_token={1}";
 	}
 }

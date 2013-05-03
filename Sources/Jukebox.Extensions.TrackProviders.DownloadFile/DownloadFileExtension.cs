@@ -1,10 +1,11 @@
 ﻿
-using System.Globalization;
+using System.Linq;
 
 namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Globalization;
 	using System.IO;
 	using System.Net;
 	using Api;
@@ -61,9 +62,7 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		/// <returns>Path.</returns>
 		private string GetPath(ITrack track) {
 			var fileName = GetFileName(track);
-			foreach (var c in _invalidChars) {
-				fileName = fileName.Replace(c.ToString(CultureInfo.InvariantCulture), String.Empty);
-			}
+			fileName = _invalidChars.Aggregate(fileName, (current, c) => current.Replace(c.ToString(CultureInfo.InvariantCulture), String.Empty));
 			return Path.Combine(_downloadPath, fileName);
 		}
 

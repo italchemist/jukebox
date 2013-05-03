@@ -1,17 +1,13 @@
 ﻿
-using System.Collections;
-using System.Linq;
-using Jukebox.Api;
-using Jukebox.Tests.Shared;
-
 namespace Jukebox.Tests {
 	using System.Collections.Generic;
+	using Api;
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
+	using Shared;
 
 
 	/// <summary>This is a test class for MusicLibraryTest and is intended to contain all MusicLibraryTest Unit Tests</summary>
-	[TestClass]
-	public class MusicLibraryTest {
+	[TestClass] public class MusicLibraryTest {
 		/// <summary>Search on empty music library should return an empty collection.</summary>
 		[TestMethod] public void SearchOnEmptyMusicLibraryShouldReturnEmptyCollectionTest() {
 			var target = new MusicLibrary();

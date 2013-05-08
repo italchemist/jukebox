@@ -1,5 +1,7 @@
 ﻿
 namespace Jukebox.Extensions.Interfaces.Web {
+	using Api;
+
 	/// <summary>Extension configuration.</summary>
 	static class Config {
 		/// <summary>Gets or sets the title.</summary>
@@ -10,5 +12,8 @@ namespace Jukebox.Extensions.Interfaces.Web {
 
 		/// <summary>Gets or sets the stream path.</summary>
 		public static string StreamPath { get; set; }
+
+		/// <summary>Gets or sets the jukebox.</summary>
+		public static IJukebox Jukebox { get; set; }
 	}
 }

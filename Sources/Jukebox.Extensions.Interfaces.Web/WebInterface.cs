@@ -17,6 +17,7 @@ namespace Jukebox.Extensions.Interfaces.Web {
 			Config.Title = vars["title"];
 			Config.Message = vars["message"];
 			Config.StreamPath = vars["streamPath"];
+			Config.Jukebox = jukebox;
 
 			var host = new NancyHost(new[] { new Uri(vars["host"]) });
 			host.Start();

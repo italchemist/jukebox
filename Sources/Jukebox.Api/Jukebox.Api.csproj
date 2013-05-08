@@ -52,6 +52,7 @@
     <Compile Include="IProperties.cs" />
     <Compile Include="ITrack.cs" />
     <Compile Include="JukeboxApplication.cs" />
+    <Compile Include="JukeboxLog.cs" />
     <Compile Include="JukeboxState.cs" />
     <Compile Include="PlaylistEventArgs.cs" />
     <Compile Include="PropertiesEventArgs.cs" />

@@ -61,7 +61,7 @@ namespace Jukebox.Extensions.Interfaces.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;&lt;head&gt;&lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;&lt;body&gt;&lt;div align=&apos;center&apos;&gt;&lt;h1&gt;{0}&lt;/h1&gt;&lt;p&gt;{1}&lt;/p&gt;&lt;audio src=&apos;{2}&apos; controls&gt;&lt;p&gt;If you are reading this, it is because your browser does not support the audio element.&lt;/p&gt;&lt;/audio&gt;&lt;/div&gt;&lt;script&gt;$(document).ready(function () {$.getJSON(&quot;http://localhost:8080/tracks/list&quot;, function (data) {alert(data);});});&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;.
+        ///   Looks up a localized string similar to &lt;html&gt;  &lt;head&gt;   &lt;script src=&quot;http://code.jquery.com/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;  &lt;/head&gt;    &lt;body&gt;   &lt;div align=&apos;center&apos;&gt;    &lt;h1&gt;{0}&lt;/h1&gt;    &lt;p&gt;{1}&lt;/p&gt;     &lt;audio src=&apos;{2}&apos; controls&gt;     &lt;p&gt;If you are reading this, it is because your browser does not support the audio element.&lt;/p&gt;    &lt;/audio&gt;   &lt;/div&gt;    &lt;form&gt;    &lt;input id=&quot;searchQuery&quot; type=&apos;text&apos;/&gt;    &lt;button id=&quot;search&quot;&gt;&lt;/button&gt;   &lt;/form&gt;    &lt;ul id=&quot;searchResults&quot;/&gt;    &lt;script&gt;    $(document).ready(function () {     var url = &quot;http://localhost:8080 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string IndexPage {
             get {

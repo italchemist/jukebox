@@ -8,6 +8,8 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 	using System.Threading;
 	using Api;
 	using Api.OAuth;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Linq;
 
 	/// <summary>Track providers from vk.com.</summary>
 	public class VkComTracksProvider : Extension {
@@ -41,7 +43,7 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 			var responseArr = RequestTracksArray(query);
 
 			for (var i = 1; i < responseArr.Count; ++i) {
-				var trackData = (JsonObject)responseArr[i];
+				var trackData = responseArr[i];
 				result.Add(new Track {
 					Performer = (string)trackData["artist"],
 					Title     = (string)trackData["title"],
@@ -56,13 +58,13 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 		/// <summary>Requests the tracks array.</summary>
 		/// <param name="query">The query.</param>
 		/// <returns></returns>
-		private JsonArray RequestTracksArray(string query) {
+		private JContainer RequestTracksArray(string query) {
 			var webClient = new WebClient {Encoding = Encoding.UTF8};
 			var queryStr = string.Format(AudioQueryUri, query, _accessToken);
 			var response = webClient.DownloadString(queryStr);
-			var responseObj = (JsonObject) SimpleJson.DeserializeObject(response);
-			var responseArr = (JsonArray) responseObj["response"];
-			return responseArr;
+			var responseContainer = (JContainer) JsonConvert.DeserializeObject(response);
+			var tracksArray = (JContainer)responseContainer["response"];
+			return tracksArray;
 		}
 
 		/// <summary>The vk.com access token.</summary>

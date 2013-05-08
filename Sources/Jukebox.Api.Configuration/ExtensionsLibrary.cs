@@ -6,36 +6,34 @@ namespace Jukebox.Api.Configuration {
 	using System.Linq;
 	using System.Reflection;
 
+	/// <summary>Extensions library.</summary>
 	public class ExtensionsLibrary {
-		private readonly Dictionary<string, IExtension> _loadedExtensions = new Dictionary<string,IExtension>();
-
+		/// <summary>Loads the extensions from specified config.</summary>
+		/// <param name="jukebox">The jukebox.</param>
+		/// <param name="config">The config.</param>
 		public void LoadExtensions(IJukebox jukebox, Config config) {
 			foreach (var group in config.ExtensionGroups) {
-				var groupRequire = @group.Require;
-				var loadGroup = true;
-
-				if (groupRequire != null) {
-					loadGroup = ProcessRequire(groupRequire, config);
-				}
+				var loadGroup = ProcessRequire(group.Require, config);
 
 				if (loadGroup) {
 					LoadExtensionGroup(jukebox, @group, config);
+				} else {
+					JukeboxApplication.Log.WriteFormat("Skiping extensions group '{0}'", group.Name);
 				}
 			}
 		}
 
+		/// <summary>Loads the group of extensions.</summary>
+		/// <param name="jukebox">The jukebox.</param>
+		/// <param name="group">The group.</param>
+		/// <param name="config">The config.</param>
 		public void LoadExtensionGroup(IJukebox jukebox, ExtensionGroupConfig group, Config config) {
-			foreach (var extension in @group.Extensions) {
-				var require = extension.Require;
-				var loadExtension = true;
-
-				if (require != null) {
-					loadExtension = ProcessRequire(require, config);
-				}
-
-				if (loadExtension) {
-					loadExtension = !_loadedExtensions.ContainsKey(extension.Name);
-				}
+			JukeboxApplication.Log.WriteFormat("Loading extensions group '{0}'", group.Name);
+			
+			foreach (var extension in group.Extensions) {
+				var loadExtension = 
+					!_loadedExtensions.ContainsKey(extension.Name) &&
+					ProcessRequire(extension.Require, config);
 
 				if (loadExtension) {
 					LoadExtension(jukebox, extension);
@@ -43,6 +41,9 @@ namespace Jukebox.Api.Configuration {
 			}
 		}
 
+		/// <summary>Loads and initializes the extension.</summary>
+		/// <param name="jukebox">The jukebox.</param>
+		/// <param name="extensionConfig">The extension config.</param>
 		private void LoadExtension(IJukebox jukebox, ExtensionConfig extensionConfig) {
 			var extension = Load(extensionConfig);
 			var variables = extensionConfig.Vars.ToDictionary(cd => cd.Name, cd => cd.Value);
@@ -54,7 +55,34 @@ namespace Jukebox.Api.Configuration {
 			_loadedExtensions[extensionConfig.Name] = extension;
 		}
 
+		/// <summary>Loads extension using specified config.</summary>
+		/// <param name="config">Config.</param>
+		/// <returns>Extension instance.</returns>
+		private static IExtension Load(ExtensionConfig config) {
+			JukeboxApplication.Log.WriteFormat("Loading extension '{0}' from '{1}'", config.Name, config.AssemblyPath);
+
+			var appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			if (appPath == null) throw new InvalidOperationException("Can not determine the application execution path");
+			
+			var assemblyPath = Path.Combine(appPath, config.AssemblyPath);
+			var assembly = Assembly.LoadFile(assemblyPath);
+			
+			var type = assembly.GetTypes().FirstOrDefault(t => t.GetInterfaces().Any(i => i.Name == "IExtension"));
+			if (type == null) throw new InvalidOperationException("There is no type implementing IExtension interface");
+
+			var iface = (IExtension)Activator.CreateInstance(type);
+			if (iface == null) throw new InvalidOperationException("Can not create instance");
+
+			return iface;
+		}
+
+		/// <summary>Processes the require string.</summary>
+		/// <param name="require">The require.</param>
+		/// <param name="config">The config.</param>
+		/// <returns></returns>
 		private static bool ProcessRequire(string require, Config config) {
+			if (require == null) return true;
+
 			var result = false;
 			var dotIdx = require.IndexOf('.');
 			var eqlIdx = require.IndexOf('=');
@@ -73,22 +101,7 @@ namespace Jukebox.Api.Configuration {
 			return result;
 		}
 
-		/// <summary>Loads extension using specified config.</summary>
-		/// <param name="config">Config.</param>
-		/// <returns>Extension instance.</returns>
-		private static IExtension Load(ExtensionConfig config) {
-			var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-			if (dir == null) throw new InvalidOperationException("Path not found");
-
-			var assemblyFullPath = Path.Combine(dir, config.AssemblyPath);
-			var assembly = Assembly.LoadFile(assemblyFullPath);
-			var type = assembly.GetTypes().FirstOrDefault(t => t.GetInterfaces().Any(i => i.Name == "IExtension"));
-			if (type == null) throw new InvalidOperationException("There is no type implementing IExtension interface");
-
-			var iface = (IExtension)Activator.CreateInstance(type);
-			if (iface == null) throw new InvalidOperationException("Can not create instance");
-
-			return iface;
-		}
+		/// <summary>The loaded extensions.</summary>
+		private readonly Dictionary<string, IExtension> _loadedExtensions = new Dictionary<string, IExtension>();
 	}
 }

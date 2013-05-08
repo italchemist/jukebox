@@ -17,6 +17,7 @@ namespace Jukebox.Hosts.Application {
 			try {
 				_extensionsLibrary.LoadExtensions(_jukebox, config);
 			} catch (Exception ex) {
+				JukeboxApplication.Log.Write(ex.Message);
 				foreach (var x in _jukebox.Extensions) {
 					x.OnError(ex);
 				}

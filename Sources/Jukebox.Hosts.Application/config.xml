@@ -18,6 +18,12 @@
           <name>trayControlCenter</name>
           <path>Jukebox.Extensions.Interfaces.TrayControlCenter.dll</path>
         </extension>
+
+        <!-- Console. -->
+        <extension>
+          <name>console</name>
+          <path>Jukebox.Extensions.Misc.Console.dll</path>
+        </extension>
       </extensions>
     </extensionsGroup>
 

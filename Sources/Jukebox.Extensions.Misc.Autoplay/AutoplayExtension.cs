@@ -18,11 +18,14 @@ namespace Jukebox.Extensions.Misc.Autoplay {
 			if (state != TrackState.Ready) return;
 			if (_jukebox.State != JukeboxState.Stop) return;
 
-			JukeboxApplication.Log.Write("Set playing state automaticly.");
+			_log.Write("Start playing.");
 			_jukebox.Play();
 		}
 
 		/// <summary>The jukebox.</summary>
 		private IJukebox _jukebox;
+
+		/// <summary>The log.</summary>
+		private readonly IJukeboxLog _log = new JukeboxLog("autoplay");
 	}
 }

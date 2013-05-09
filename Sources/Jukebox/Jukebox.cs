@@ -37,8 +37,10 @@ namespace Jukebox {
 				_currentTrack = Playlist.Dequeue();
 				if (_currentTrack != null)
 					OnStateChanged(_currentTrack, JukeboxState.Play);
-			} else
-				OnStateChanged(_currentTrack, JukeboxState.Stop);
+			} else {
+				_currentTrack = null;
+				OnStateChanged(null, JukeboxState.Stop);
+			}
 		}
 
 		/// <summary>Gets state.</summary>
@@ -60,6 +62,7 @@ namespace Jukebox {
 		/// <param name="sender">The sender.</param>
 		/// <param name="args">The <see cref="PlaylistEventArgs"/> instance containing the event data.</param>
 		private void OnTrackEnqueued(object sender, PlaylistEventArgs args) {
+			_log.WriteFormat("Track {0} enueued", args.Track);
 			foreach (var extension in Extensions) {
 				extension.OnTrackEnqueued(args.Track);
 			}
@@ -69,6 +72,7 @@ namespace Jukebox {
 		/// <param name="sender">The sender.</param>
 		/// <param name="args">The <see cref="MusicLibraryEventArgs"/> instance containing the event data.</param>
 		private void OnTrackStateChanged(object sender, MusicLibraryEventArgs args) {
+			//_log.WriteFormat("State of {0} changed to {1}", args.Track, args.State);
 			foreach (var extension in Extensions) {
 				extension.OnTrackStateChanged(args.Track, args.State);
 			}
@@ -78,6 +82,7 @@ namespace Jukebox {
 		/// <param name="track">The track.</param>
 		/// <param name="state">The state.</param>
 		private void OnStateChanged(ITrack track, JukeboxState state) {
+			_log.WriteFormat("State of player changed to {0}", state);
 			foreach (var extension in Extensions) {
 				extension.OnStateChanged(track, state);
 			}
@@ -86,5 +91,8 @@ namespace Jukebox {
 
 		/// <summary>Gets current track.</summary>
 		private ITrack _currentTrack;
+
+		/// <summary>The log.</summary>
+		private readonly IJukeboxLog _log = new JukeboxLog("core");
 	}
 }

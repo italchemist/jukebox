@@ -34,6 +34,7 @@ namespace Jukebox.Extensions.Interfaces.Web {
 					//}
 					var track = Config.Jukebox.MusicLibrary.GetTrackFromCache(trackId);
 					// TODO: IF track not found
+					Config.Jukebox.MusicLibrary.SetTrackState(track, TrackState.Download);
 					Config.Jukebox.Playlist.Enqueue(track);
 					var response = (Response) (JsonConvert.SerializeObject(
 						new OperationResponse(track != null), Formatting.None,

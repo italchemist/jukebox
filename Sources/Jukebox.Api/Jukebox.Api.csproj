@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IJukeboxLog.cs" />
     <Compile Include="IPlaylistNextTrackStrategy.cs" />
     <Compile Include="MusicLibraryEventArgs.cs" />
     <Compile Include="JukeboxConfiguration.cs" />

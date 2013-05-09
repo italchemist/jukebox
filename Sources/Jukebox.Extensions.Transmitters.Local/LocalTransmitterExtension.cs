@@ -18,6 +18,8 @@ namespace Jukebox.Extensions.Transmitters.Local {
 		/// <param name="track">The track.</param>
 		/// <param name="state">The state.</param>
 		public override void OnStateChanged(ITrack track, JukeboxState state) {
+			if (state != JukeboxState.Play) return;
+			
 			new Thread(x => {
 				using (var ms = File.OpenRead(track.Uri.LocalPath))
 				using (var rdr = new Mp3FileReader(ms))

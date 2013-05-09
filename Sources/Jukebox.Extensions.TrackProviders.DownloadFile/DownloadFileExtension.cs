@@ -19,6 +19,8 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 			_jukebox = jukebox;
 			_downloadPath = vars.ContainsKey("path") && !string.IsNullOrEmpty(vars["path"]) ? vars["path"] : Path.GetTempPath();
 			_invalidChars = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+			_log.WriteFormat("Tracks will be downloaded to {0}", _downloadPath);
 		}
 
 		/// <summary>Called when track enqueued.</summary>
@@ -31,8 +33,6 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 			client.DownloadProgressChanged += OnDownloadProgressChanged;
 			client.DownloadFileCompleted += OnDownloadCompleted;
 			client.DownloadFileAsync(track.Uri, path, track);
-
-			JukeboxApplication.Log.WriteFormat("Download started {0} - {1} to {2}", track.Performer, track.Title, path);
 		}
 
 		/// <summary>Download completed.</summary>
@@ -41,7 +41,6 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e) {
 			var track = (ITrack)e.UserState;
 			if (e.Error == null) {
-				JukeboxApplication.Log.WriteFormat("Download completed {0} - {1}", track.Performer, track.Title);
 				track.Uri = new Uri(GetPath(track));
 				SaveTags(track);
 				_jukebox.MusicLibrary.SetTrackState(track, TrackState.Ready);
@@ -55,7 +54,9 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		/// <param name="e"></param>
 		private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e) {
 			var track = (ITrack)e.UserState;
-			_jukebox.MusicLibrary.SetTrackState(track, TrackState.Downloading);
+			if (_jukebox.MusicLibrary.GetTrackState(track) != TrackState.Downloading) {
+				_jukebox.MusicLibrary.SetTrackState(track, TrackState.Downloading);
+			}
 		}
 
 		/// <summary>Gets path for the specified track.</summary>
@@ -92,6 +93,9 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 
 		/// <summary>The jukebox.</summary>
 		private IJukebox _jukebox;
+
+		/// <summary>The log.</summary>
+		private readonly IJukeboxLog _log = new JukeboxLog("download");
 
 		/// <summary>Invalid path characters.</summary>
 		private string _invalidChars;

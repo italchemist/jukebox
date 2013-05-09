@@ -18,7 +18,7 @@ namespace Jukebox.Api.Configuration {
 				if (loadGroup) {
 					LoadExtensionGroup(jukebox, @group, config);
 				} else {
-					JukeboxApplication.Log.WriteFormat("Skiping extensions group '{0}'", group.Name);
+					_log.WriteFormat("Skiping extensions group '{0}'", group.Name);
 				}
 			}
 		}
@@ -28,7 +28,7 @@ namespace Jukebox.Api.Configuration {
 		/// <param name="group">The group.</param>
 		/// <param name="config">The config.</param>
 		public void LoadExtensionGroup(IJukebox jukebox, ExtensionGroupConfig group, Config config) {
-			JukeboxApplication.Log.WriteFormat("Loading extensions group '{0}'", group.Name);
+			_log.WriteFormat("Loading extensions group '{0}'", group.Name);
 			
 			foreach (var extension in group.Extensions) {
 				var loadExtension = 
@@ -58,8 +58,8 @@ namespace Jukebox.Api.Configuration {
 		/// <summary>Loads extension using specified config.</summary>
 		/// <param name="config">Config.</param>
 		/// <returns>Extension instance.</returns>
-		private static IExtension Load(ExtensionConfig config) {
-			JukeboxApplication.Log.WriteFormat("Loading extension '{0}' from '{1}'", config.Name, config.AssemblyPath);
+		private IExtension Load(ExtensionConfig config) {
+			_log.WriteFormat("Loading extension '{0}' from '{1}'", config.Name, config.AssemblyPath);
 
 			var appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 			if (appPath == null) throw new InvalidOperationException("Can not determine the application execution path");
@@ -103,5 +103,8 @@ namespace Jukebox.Api.Configuration {
 
 		/// <summary>The loaded extensions.</summary>
 		private readonly Dictionary<string, IExtension> _loadedExtensions = new Dictionary<string, IExtension>();
+
+		/// <summary>The log.</summary>
+		private readonly IJukeboxLog _log = new JukeboxLog("core");
 	}
 }

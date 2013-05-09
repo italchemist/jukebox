@@ -17,7 +17,7 @@ namespace Jukebox.Hosts.Application {
 			try {
 				_extensionsLibrary.LoadExtensions(_jukebox, config);
 			} catch (Exception ex) {
-				JukeboxApplication.Log.Write(ex.Message);
+				_log.Write(ex.Message);
 				foreach (var x in _jukebox.Extensions) {
 					x.OnError(ex);
 				}
@@ -43,7 +43,10 @@ namespace Jukebox.Hosts.Application {
 		private Config _config;
 
 		/// <summary>The jukebox.</summary>
-		private readonly Jukebox _jukebox = new Jukebox();
+		private readonly IJukebox _jukebox = new Jukebox();
+
+		/// <summary>The jukebox.</summary>
+		private readonly IJukeboxLog _log = new JukeboxLog("core");
 
 		/// <summary>The extensions library.</summary>
 		private readonly ExtensionsLibrary _extensionsLibrary = new ExtensionsLibrary();

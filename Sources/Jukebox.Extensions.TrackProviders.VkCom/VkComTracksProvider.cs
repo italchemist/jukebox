@@ -47,14 +47,12 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 
 			for (var i = 1; i < responseArr.Count; ++i) {
 				var trackData = responseArr[i];
-				var track = new Track {
+				result.Add(new Track {
 					Performer = (string) trackData["artist"],
 					Title = (string) trackData["title"],
 					Uri = new Uri((string) trackData["url"]),
 					Duration = TimeSpan.FromSeconds((Int64) trackData["duration"])
-				};
-				result.Add(track);
-				_jukebox.MusicLibrary.SetTrackState(track, TrackState.Download);
+				});
 			}
 			return result;
 		}

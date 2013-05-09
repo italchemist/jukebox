@@ -8,11 +8,12 @@ namespace Jukebox {
 		/// <summary>Initializes a new instance of the <see cref="Jukebox"/> class.</summary>
 		public Jukebox() {
 			Properties = new Properties();
-			Playlist = new Playlist();
 			MusicLibrary = new MusicLibrary();
+			Playlist = new Playlist { NextTrackStrategy = new NextReadyTrackStrategy(MusicLibrary) };
 			Extensions = new List<IExtension>();
 
 			Playlist.TrackEnqueued += OnTrackEnqueued;
+			MusicLibrary.TrackStateChanged += OnTrackStateChanged;
 		}
 
 		/// <summary>Starts playing.</summary>
@@ -37,7 +38,7 @@ namespace Jukebox {
 				if (_currentTrack != null)
 					OnStateChanged(_currentTrack, JukeboxState.Play);
 			} else
-				_currentTrack = null;
+				OnStateChanged(_currentTrack, JukeboxState.Stop);
 		}
 
 		/// <summary>Gets state.</summary>
@@ -58,9 +59,18 @@ namespace Jukebox {
 		/// <summary>Called when track enqueued.</summary>
 		/// <param name="sender">The sender.</param>
 		/// <param name="args">The <see cref="PlaylistEventArgs"/> instance containing the event data.</param>
-		void OnTrackEnqueued(object sender, PlaylistEventArgs args) {
+		private void OnTrackEnqueued(object sender, PlaylistEventArgs args) {
 			foreach (var extension in Extensions) {
 				extension.OnTrackEnqueued(args.Track);
+			}
+		}
+
+		/// <summary>Called when track state changed.</summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="args">The <see cref="MusicLibraryEventArgs"/> instance containing the event data.</param>
+		private void OnTrackStateChanged(object sender, MusicLibraryEventArgs args) {
+			foreach (var extension in Extensions) {
+				extension.OnTrackStateChanged(args.Track, args.State);
 			}
 		}
 

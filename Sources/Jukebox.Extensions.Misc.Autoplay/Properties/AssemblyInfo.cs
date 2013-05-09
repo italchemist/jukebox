@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Jukebox.Interfaces.Web")]
+[assembly: AssemblyTitle("Jukebox.Extensions.Misc.Autoplay")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Jukebox.Interfaces.Web")]
+[assembly: AssemblyProduct("Jukebox.Extensions.Misc.Autoplay")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("abe80324-26c9-477c-8e7e-f8fafaa86b52")]
+[assembly: Guid("b3764d97-7ea3-4ef9-951f-8f55bede9d5b")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -16,7 +16,7 @@ namespace Jukebox.Tests {
 			Assert.IsNotNull(target.Playlist);
 			Assert.IsNotNull(target.Properties);
 		}
-
+		/*
 		/// <summary>PlayShouldTurnJukeboxIntoPlayingStateIfPlaylistIsNotEmpty.</summary>
 		[TestMethod] public void PlayShouldTurnJukeboxIntoPlayingStateIfPlaylistIsNotEmptyTest() {
 			var target = new Jukebox();
@@ -24,7 +24,7 @@ namespace Jukebox.Tests {
 			target.Play();
 			Assert.AreEqual(JukeboxState.Play, target.State);
 		}
-
+		*/
 		/// <summary>PlayShouldTurnJukeboxIntoPlayingStateIfPlaylistIsNotEmpty.</summary>
 		[TestMethod] public void PlayShouldTurnJukeboxIntoStopStateIfPlaylistIsEmptyTest() {
 			var target = new Jukebox();

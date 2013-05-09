@@ -17,6 +17,7 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 		/// <param name="jukebox">The jukebox.</param>
 		/// <param name="vars">The variables.</param>
 		public override void OnInitialize(IJukebox jukebox, IDictionary<string, string> vars) {
+			_jukebox = jukebox;
 			var t = new Thread(() => OnExtensionThreadStart(jukebox));
 			t.SetApartmentState(ApartmentState.STA);
 			t.Start();
@@ -31,6 +32,7 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 				var r = new Regex("access_token=(.*)&expires_in");
 				_accessToken = r.Match(args.Uri.Fragment).Groups[1].Value;
 				jukebox.MusicLibrary.AddTracksProvider(this);
+				oauth.Close();
 			};
 			oauth.Authenicate();
 		}
@@ -44,13 +46,14 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 
 			for (var i = 1; i < responseArr.Count; ++i) {
 				var trackData = responseArr[i];
-				result.Add(new Track {
-					Performer = (string)trackData["artist"],
-					Title     = (string)trackData["title"],
-					Uri       = new Uri((string)trackData["url"]),
-					State     = TrackState.Download,
-					Duration  = TimeSpan.FromSeconds((Int64)trackData["duration"])
-				});
+				var track = new Track {
+					Performer = (string) trackData["artist"],
+					Title = (string) trackData["title"],
+					Uri = new Uri((string) trackData["url"]),
+					Duration = TimeSpan.FromSeconds((Int64) trackData["duration"])
+				};
+				result.Add(track);
+				_jukebox.MusicLibrary.SetTrackState(track, TrackState.Download);
 			}
 			return result;
 		}
@@ -66,6 +69,9 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 			var tracksArray = (JContainer)responseContainer["response"];
 			return tracksArray;
 		}
+
+		/// <summary>The jukebox.</summary>
+		private IJukebox _jukebox;
 
 		/// <summary>The vk.com access token.</summary>
 		private string _accessToken;

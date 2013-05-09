@@ -26,6 +26,11 @@ namespace Jukebox.Api {
 		/// <param name="track">The track.</param>
 		public virtual void OnTrackEnqueued(ITrack track) { }
 
+		/// <summary>Called when track state changed.</summary>
+		/// <param name="track">The track.</param>
+		/// <param name="state">The state.</param>
+		public virtual void OnTrackStateChanged(ITrack track, TrackState state) { }
+
 
 		// Data Provider Methods
 

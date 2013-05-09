@@ -27,7 +27,7 @@ namespace Jukebox.Extensions.Interfaces.TrayControlCenter {
 				Icon = (System.Drawing.Icon) (resources.GetObject("notifyIcon1.Icon")),
 				Visible = true
 			};
-			//notifyIcon.ShowBalloonTip(1000, "erwrew", "fsdfdsfsdfsdf", ToolTipIcon.Info);
+			notifyIcon.ShowBalloonTip(1000, "Jukebox", "Jukebox has been started", ToolTipIcon.Info);
 			
 			Application.Run();
 		}

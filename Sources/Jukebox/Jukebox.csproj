@@ -38,6 +38,8 @@
   <ItemGroup>
     <Compile Include="Jukebox.cs" />
     <Compile Include="MusicLibrary.cs" />
+    <Compile Include="MusicLibraryCache.cs" />
+    <Compile Include="NextReadyTrackStrategy.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

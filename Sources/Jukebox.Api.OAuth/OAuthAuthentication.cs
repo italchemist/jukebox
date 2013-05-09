@@ -13,9 +13,14 @@ namespace Jukebox.Api.OAuth {
 
 		/// <summary>Starts authenicatication process.</summary>
 		public void Authenicate() {
-			var form = new AuthenticationForm(_uri);
-			form.WebBrowser.Navigated += WebBrowserOnNavigated;
-			form.ShowDialog();
+			_form = new AuthenticationForm(_uri);
+			_form.WebBrowser.Navigated += WebBrowserOnNavigated;
+			_form.ShowDialog();
+		}
+
+		/// <summary>Closes form.</summary>
+		public void Close() {
+			if (_form != null) _form.Close();
 		}
 
 		/// <summary>Webs the browser on navigated.</summary>
@@ -26,11 +31,13 @@ namespace Jukebox.Api.OAuth {
 			var evnt = Navigated;
 			if (evnt != null) evnt(this, new OAuthEventArgs(uri));
 		}
-
 		/// <summary>Occurs when navigated to another page.</summary>
 		public event EventHandler<OAuthEventArgs> Navigated;
 
 		/// <summary>The uri.</summary>
 		private readonly Uri _uri;
+
+		/// <summary>The form.</summary>
+		private AuthenticationForm _form;
 	}
 }

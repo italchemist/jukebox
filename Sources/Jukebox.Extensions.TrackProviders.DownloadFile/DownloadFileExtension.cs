@@ -1,12 +1,11 @@
 ﻿
-using System.Linq;
-
 namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Globalization;
 	using System.IO;
+	using System.Linq;
 	using System.Net;
 	using Api;
 	using TagLib.Mpeg;
@@ -17,21 +16,23 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		/// <param name="jukebox">Jikebox.</param>
 		/// <param name="vars">Variables.</param>
 		public override void OnInitialize(IJukebox jukebox, IDictionary<string, string> vars) {
-			if (!vars.ContainsKey("path")) return;
-
-			_downloadPath = vars["path"];
+			_jukebox = jukebox;
+			_downloadPath = vars.ContainsKey("path") && !string.IsNullOrEmpty(vars["path"]) ? vars["path"] : Path.GetTempPath();
 			_invalidChars = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
 		}
 
-		/// <summary></summary>
-		/// <param name="track">Enqueued track.</param>
+		/// <summary>Called when track enqueued.</summary>
+		/// <param name="track">The track.</param>
 		public override void OnTrackEnqueued(ITrack track) {
-			if (track.State != TrackState.Download) return;
+			if (_jukebox.MusicLibrary.GeTrackState(track) != TrackState.Download) return;
 
 			var client = new WebClient();
+			var path = GetPath(track);
 			client.DownloadProgressChanged += OnDownloadProgressChanged;
 			client.DownloadFileCompleted += OnDownloadCompleted;
-			client.DownloadFileAsync(track.Uri, GetPath(track), track);
+			client.DownloadFileAsync(track.Uri, path, track);
+
+			JukeboxApplication.Log.WriteFormat("Download started {0} - {1} to {2}", track.Performer, track.Title, path);
 		}
 
 		/// <summary>Download completed.</summary>
@@ -40,12 +41,12 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e) {
 			var track = (ITrack)e.UserState;
 			if (e.Error == null) {
+				JukeboxApplication.Log.WriteFormat("Download completed {0} - {1}", track.Performer, track.Title);
 				track.Uri = new Uri(GetPath(track));
-				track.State = TrackState.Ready;
-				
 				SaveTags(track);
+				_jukebox.MusicLibrary.SetTrackState(track, TrackState.Ready);
 			} else {
-				track.State = TrackState.Error;
+				_jukebox.MusicLibrary.SetTrackState(track, TrackState.Error);
 			}
 		}
 
@@ -54,7 +55,7 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		/// <param name="e"></param>
 		private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e) {
 			var track = (ITrack)e.UserState;
-			track.State = TrackState.Downloading;
+			_jukebox.MusicLibrary.SetTrackState(track, TrackState.Downloading);
 		}
 
 		/// <summary>Gets path for the specified track.</summary>
@@ -87,6 +88,10 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 			file.Tag.Title = track.Title;
 			file.Save();
 		}
+
+
+		/// <summary>The jukebox.</summary>
+		private IJukebox _jukebox;
 
 		/// <summary>Invalid path characters.</summary>
 		private string _invalidChars;

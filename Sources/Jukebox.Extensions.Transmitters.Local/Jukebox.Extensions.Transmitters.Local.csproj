@@ -5,13 +5,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AA678A16-4797-4F52-8B19-AD35D7911C9A}</ProjectGuid>
+    <ProjectGuid>{4FDF5510-B1BB-435B-9D2B-00F76FC421A3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jukebox.Api</RootNamespace>
-    <AssemblyName>Jukebox.Api</AssemblyName>
+    <RootNamespace>Jukebox.Extensions.Transmitters.Local</RootNamespace>
+    <AssemblyName>Jukebox.Extensions.Transmitters.Local</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -31,40 +33,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>jukebox.api.pfx</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>..\packages\NAudio.1.6\lib\net20\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPlaylistNextTrackStrategy.cs" />
-    <Compile Include="MusicLibraryEventArgs.cs" />
-    <Compile Include="JukeboxConfiguration.cs" />
-    <Compile Include="JukeboxConfigurationEventArgs.cs" />
-    <Compile Include="Extension.cs" />
-    <Compile Include="IExtension.cs" />
-    <Compile Include="IJukebox.cs" />
-    <Compile Include="IMusicLibrary.cs" />
-    <Compile Include="IPlaylist.cs" />
-    <Compile Include="IProperties.cs" />
-    <Compile Include="ITrack.cs" />
-    <Compile Include="JukeboxApplication.cs" />
-    <Compile Include="JukeboxLog.cs" />
-    <Compile Include="JukeboxState.cs" />
-    <Compile Include="PlaylistEventArgs.cs" />
-    <Compile Include="PropertiesEventArgs.cs" />
+    <Compile Include="LocalTransmitterExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="jukebox.api.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jukebox.Api\Jukebox.Api.csproj">
+      <Project>{AA678A16-4797-4F52-8B19-AD35D7911C9A}</Project>
+      <Name>Jukebox.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

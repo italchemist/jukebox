@@ -13,9 +13,6 @@ namespace Jukebox.Api {
 		/// <summary>Gets or sets duration.</summary>
 		TimeSpan Duration { get; set; }
 
-		/// <summary>Gets or sets track state.</summary>
-		TrackState State { get; set; }
-
 		/// <summary>Gets or sets Uri track is located.</summary>
 		Uri Uri { get; set; }
 	}

@@ -37,12 +37,27 @@
         <extension>
           <name>downloadFile</name>
           <path>Jukebox.Extensions.TrackProviders.DownloadFile.dll</path>
+          <vars>
+            <var name="path"></var>
+          </vars>
         </extension>
 
         <!-- Vk.Com -->
         <extension>
           <name>vkCom</name>
           <path>Jukebox.Extensions.TrackProviders.VkCom.dll</path>
+        </extension>
+
+        <!-- Local Transmitter -->
+        <extension>
+          <name>localTransmitter</name>
+          <path>Jukebox.Extensions.Transmitters.Local.dll</path>
+        </extension>
+
+        <!-- Autoplay -->
+        <extension>
+          <name>autoplay</name>
+          <path>Jukebox.Extensions.Misc.Autoplay.dll</path>
         </extension>
       </extensions>
     </extensionsGroup>

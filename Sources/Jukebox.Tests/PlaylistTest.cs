@@ -10,6 +10,7 @@ namespace Jukebox.Tests {
 	///</summary>
 	[TestClass]
 	public class PlaylistTest {
+		/*
 		[TestMethod] public void PlaylistConstructorWithTracksTest() {
 			var track = new Track("Beatles", "Let It Be", TrackState.Ready);
 			var target = new Playlist(new List<ITrack> { track });
@@ -73,5 +74,6 @@ namespace Jukebox.Tests {
 			target.Enqueue(track);
 			Assert.IsTrue(raised);
 		}
+		 **/
 	}
 }

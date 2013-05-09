@@ -17,14 +17,10 @@ namespace Jukebox {
 			Title = title;
 		}
 
-		/// <summary>Initializes a new instance of the <see cref="Track"/> class.</summary>
-		/// <param name="performer">The performer.</param>
-		/// <param name="title">The title.</param>
-		/// <param name="state">State of the track.</param>
-		public Track(string performer, string title, TrackState state) {
-			Performer = performer;
-			Title = title;
-			State = state;
+		/// <summary>Returns a <see cref="System.String" /> that represents this instance.</summary>
+		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+		public override string ToString() {
+			return string.Format("{0} - {1} [{2}:{3}]", Performer, Title, Duration.Minutes, Duration.Seconds);
 		}
 
 		/// <summary>Gets or sets title.</summary>
@@ -35,9 +31,6 @@ namespace Jukebox {
 
 		/// <summary>Gets or sets duration.</summary>
 		public TimeSpan Duration { get; set; }
-
-		/// <summary>Gets or sets track state.</summary>
-		public TrackState State { get; set; }
 
 		/// <summary>Gets or sets Uri track is located.</summary>
 		public Uri Uri { get; set; }

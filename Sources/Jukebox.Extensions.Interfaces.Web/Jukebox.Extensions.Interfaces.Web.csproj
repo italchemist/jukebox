@@ -52,6 +52,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PageResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ResponseModels\OperationResponse.cs" />
     <Compile Include="ResponseModels\SearchTracksResponse.cs" />
     <Compile Include="ResponseModels\TrackResponse.cs" />
     <Compile Include="WebInterface.cs" />

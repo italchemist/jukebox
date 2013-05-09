@@ -15,6 +15,9 @@ namespace Jukebox.Api {
 		/// <summary>Occurs when track enqueued.</summary>
 		event EventHandler<PlaylistEventArgs> TrackEnqueued;
 
+		/// <summary>Occurs when track dequeued.</summary>
+		event EventHandler<PlaylistEventArgs> TrackDequeued;
+
 		/// <summary>Gets number of tracks.</summary>
 		int Count { get; }
 	}

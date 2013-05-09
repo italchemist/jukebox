@@ -10,6 +10,7 @@ namespace Jukebox.Api {
 		/// <param name="vars">The variables.</param>
 		void OnInitialize(IJukebox jukebox, IDictionary<string, string> vars);
 
+
 		// Jukebox Methods
 
 		/// <summary>Called when property changed.</summary>
@@ -26,7 +27,12 @@ namespace Jukebox.Api {
 		/// <param name="track">The track.</param>
 		void OnTrackEnqueued(ITrack track);
 
-		
+		/// <summary>Called when track state changed.</summary>
+		/// <param name="track">The track.</param>
+		/// <param name="state">The state.</param>
+		void OnTrackStateChanged(ITrack track, TrackState state);
+
+
 		// Data Provider Methods
 
 		/// <summary>Called when search requested.</summary>

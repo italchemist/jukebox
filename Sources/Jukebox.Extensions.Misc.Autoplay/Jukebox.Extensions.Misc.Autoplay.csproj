@@ -5,14 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AA678A16-4797-4F52-8B19-AD35D7911C9A}</ProjectGuid>
+    <ProjectGuid>{FDBCCA5D-A485-4165-8311-7426CDD26B5E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jukebox.Api</RootNamespace>
-    <AssemblyName>Jukebox.Api</AssemblyName>
+    <RootNamespace>Jukebox.Extensions.Misc.Autoplay</RootNamespace>
+    <AssemblyName>Jukebox.Extensions.Misc.Autoplay</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,38 +30,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>jukebox.api.pfx</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPlaylistNextTrackStrategy.cs" />
-    <Compile Include="MusicLibraryEventArgs.cs" />
-    <Compile Include="JukeboxConfiguration.cs" />
-    <Compile Include="JukeboxConfigurationEventArgs.cs" />
-    <Compile Include="Extension.cs" />
-    <Compile Include="IExtension.cs" />
-    <Compile Include="IJukebox.cs" />
-    <Compile Include="IMusicLibrary.cs" />
-    <Compile Include="IPlaylist.cs" />
-    <Compile Include="IProperties.cs" />
-    <Compile Include="ITrack.cs" />
-    <Compile Include="JukeboxApplication.cs" />
-    <Compile Include="JukeboxLog.cs" />
-    <Compile Include="JukeboxState.cs" />
-    <Compile Include="PlaylistEventArgs.cs" />
-    <Compile Include="PropertiesEventArgs.cs" />
+    <Compile Include="AutoplayExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="jukebox.api.pfx" />
+    <ProjectReference Include="..\Jukebox.Api\Jukebox.Api.csproj">
+      <Project>{AA678A16-4797-4F52-8B19-AD35D7911C9A}</Project>
+      <Name>Jukebox.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

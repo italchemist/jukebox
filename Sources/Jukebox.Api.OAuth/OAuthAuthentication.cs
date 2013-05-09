@@ -4,11 +4,23 @@ namespace Jukebox.Api.OAuth {
 	using System.Windows.Forms;
 
 	/// <summary>OAuth aunthenication interface.</summary>
-	public sealed class OAuthAuthentication {
+	public sealed class OAuthAuthentication : IDisposable {
 		/// <summary>Initializes a new instance of the <see cref="OAuthAuthentication"/> class.</summary>
 		/// <param name="uri">The URI.</param>
 		public OAuthAuthentication(Uri uri) {
 			_uri = uri;
+		}
+
+		/// <summary>Finalizes an instance of the <see cref="OAuthAuthentication"/> class.</summary>
+		~OAuthAuthentication() {
+			Dispose();
+		}
+
+		/// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+		/// <exception cref="System.NotImplementedException"></exception>
+		public void Dispose() {
+			if (_form != null) _form.Dispose();
+			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>Starts authenicatication process.</summary>

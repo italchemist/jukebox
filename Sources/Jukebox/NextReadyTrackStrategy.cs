@@ -16,7 +16,7 @@ namespace Jukebox {
 		/// <param name="tracks">The tracks.</param>
 		/// <returns>Track.</returns>
 		public ITrack GetNext(IEnumerable<ITrack> tracks) {
-			return tracks.FirstOrDefault(track => _musicLibrary.GeTrackState(track) == TrackState.Ready);
+			return tracks.FirstOrDefault(track => _musicLibrary.GetTrackState(track) == TrackState.Ready);
 		}
 
 		/// <summary>The music library.</summary>

@@ -1,6 +1,7 @@
 ﻿
 namespace Jukebox {
 	using System;
+	using System.Globalization;
 	using Api;
 
 	/// <summary>Music track interface.</summary>
@@ -20,7 +21,7 @@ namespace Jukebox {
 		/// <summary>Returns a <see cref="System.String" /> that represents this instance.</summary>
 		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
 		public override string ToString() {
-			return string.Format("{0} - {1} [{2}:{3}]", Performer, Title, Duration.Minutes, Duration.Seconds);
+			return string.Format(CultureInfo.CurrentCulture, "{0} - {1} [{2}:{3}]", Performer, Title, Duration.Minutes, Duration.Seconds);
 		}
 
 		/// <summary>Gets or sets title.</summary>

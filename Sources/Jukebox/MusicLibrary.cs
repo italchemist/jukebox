@@ -9,7 +9,7 @@ namespace Jukebox {
 		/// <summary>Ges the state of the track.</summary>
 		/// <param name="track">The track.</param>
 		/// <returns>State of the track.</returns>
-		public TrackState GeTrackState(ITrack track) {
+		public TrackState GetTrackState(ITrack track) {
 			TrackState state;
 			return _state.TryGetValue(track, out state) ? state : TrackState.Unknown;
 		}

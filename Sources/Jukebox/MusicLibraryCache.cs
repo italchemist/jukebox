@@ -1,10 +1,10 @@
 ﻿
-using System;
-using System.Linq;
-using System.Text;
-
 namespace Jukebox {
+	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
+	using System.Linq;
+	using System.Text;
 	using Api;
 
 	/// <summary>Music library cache.</summary>
@@ -32,7 +32,7 @@ namespace Jukebox {
 
 			const int byteSize = 0x100;
 			var allowedCharSet = new HashSet<char>(allowedChars).ToArray();
-			if (byteSize < allowedCharSet.Length) throw new ArgumentException(String.Format("allowedChars may contain no more than {0} characters.", byteSize));
+			if (byteSize < allowedCharSet.Length) throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, "allowedChars may contain no more than {0} characters.", byteSize));
 
 			// Guid.NewGuid and System.Random are not particularly random. By using a
 			// cryptographically-secure random number generator, the caller is always

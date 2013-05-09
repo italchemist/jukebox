@@ -24,7 +24,7 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		/// <summary>Called when track enqueued.</summary>
 		/// <param name="track">The track.</param>
 		public override void OnTrackEnqueued(ITrack track) {
-			if (_jukebox.MusicLibrary.GeTrackState(track) != TrackState.Download) return;
+			if (_jukebox.MusicLibrary.GetTrackState(track) != TrackState.Download) return;
 
 			var client = new WebClient();
 			var path = GetPath(track);
@@ -70,12 +70,12 @@ namespace Jukebox.Extensions.TrackProviders.DownloadFile {
 		/// <summary>Gets file name for the specified track.</summary>
 		/// <param name="track">Track to get file name to.</param>
 		/// <returns>File name.</returns>
-		private string GetFileName(ITrack track) {
+		private static string GetFileName(ITrack track) {
 			string fileName;
 			if (track.Performer != null && track.Title != null) {
-				fileName = String.Format(FileNamePattern, track.Performer, track.Title);
+				fileName = String.Format(CultureInfo.InvariantCulture, FileNamePattern, track.Performer, track.Title);
 			} else {
-				fileName = String.Format(FileNameGuidPattern, Guid.NewGuid());
+				fileName = String.Format(CultureInfo.InvariantCulture, FileNameGuidPattern, Guid.NewGuid());
 			}
 			return fileName;
 		}

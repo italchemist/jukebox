@@ -4,7 +4,7 @@ namespace Jukebox.Extensions.Misc.Console {
 	using System.Diagnostics;
 	using System.Windows.Forms;
 	
-	public class DebugTraceListener : TraceListener {
+	sealed class DebugTraceListener : TraceListener {
 		/// <summary>Initializes a new instance of the <see cref="DebugTraceListener"/> class.</summary>
 		/// <param name="textBox">The text box.</param>
 		public DebugTraceListener(RichTextBox textBox) {

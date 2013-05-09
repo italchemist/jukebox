@@ -1,7 +1,6 @@
 ﻿
-using System;
-
 namespace Jukebox.Api {
+	using System;
 	using System.Collections.Generic;
 
 	/// <summary>Music library interface.</summary>
@@ -25,10 +24,10 @@ namespace Jukebox.Api {
 		/// <param name="tracksProvider">Provider.</param>
 		void AddTracksProvider(IExtension tracksProvider);
 
-		/// <summary>Ges the state of the track.</summary>
+		/// <summary>Gets the state of the track.</summary>
 		/// <param name="track">The track.</param>
 		/// <returns>State of the track.</returns>
-		TrackState GeTrackState(ITrack track);
+		TrackState GetTrackState(ITrack track);
 
 		/// <summary>Sets the state of the track.</summary>
 		/// <param name="track">The track.</param>

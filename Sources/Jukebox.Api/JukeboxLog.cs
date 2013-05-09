@@ -1,6 +1,7 @@
 ﻿
 namespace Jukebox.Api {
 	using System.Diagnostics;
+	using System.Globalization;
 
 	/// <summary>Logging interface.</summary>
 	public class JukeboxLog {
@@ -14,7 +15,7 @@ namespace Jukebox.Api {
 		/// <param name="message">The message.</param>
 		/// <param name="args">Arguments.</param>
 		public void WriteFormat(string message, params object[] args) {
-			Write(string.Format(message, args));
+			Write(string.Format(CultureInfo.CurrentCulture, message, args));
 		}
 	}
 }

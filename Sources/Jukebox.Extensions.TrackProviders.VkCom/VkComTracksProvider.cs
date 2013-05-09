@@ -2,6 +2,7 @@
 namespace Jukebox.Extensions.TrackProviders.VkCom {
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Net;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -63,7 +64,7 @@ namespace Jukebox.Extensions.TrackProviders.VkCom {
 		/// <returns></returns>
 		private JContainer RequestTracksArray(string query) {
 			var webClient = new WebClient {Encoding = Encoding.UTF8};
-			var queryStr = string.Format(AudioQueryUri, query, _accessToken);
+			var queryStr = string.Format(CultureInfo.InvariantCulture, AudioQueryUri, query, _accessToken);
 			var response = webClient.DownloadString(queryStr);
 			var responseContainer = (JContainer) JsonConvert.DeserializeObject(response);
 			var tracksArray = (JContainer)responseContainer["response"];

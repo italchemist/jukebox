@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.Transmit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.Misc.Autoplay", "Jukebox.Extensions.Misc.Autoplay\Jukebox.Extensions.Misc.Autoplay.csproj", "{FDBCCA5D-A485-4165-8311-7426CDD26B5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jukebox.Extensions.Transmitters.Streaming", "Jukebox.Extensions.Transmitters.Streaming\Jukebox.Extensions.Transmitters.Streaming.csproj", "{866F2A7E-62BB-4490-9985-0A765FB6B7DC}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Jukebox.vsmdi
@@ -196,6 +198,16 @@ Global
 		{FDBCCA5D-A485-4165-8311-7426CDD26B5E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FDBCCA5D-A485-4165-8311-7426CDD26B5E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FDBCCA5D-A485-4165-8311-7426CDD26B5E}.Release|x86.ActiveCfg = Release|Any CPU
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Debug|x86.ActiveCfg = Debug|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Debug|x86.Build.0 = Debug|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Release|Any CPU.ActiveCfg = Release|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Release|Mixed Platforms.Build.0 = Release|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Release|x86.ActiveCfg = Release|x86
+		{866F2A7E-62BB-4490-9985-0A765FB6B7DC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -54,6 +54,12 @@
           <path>Jukebox.Extensions.Transmitters.Local.dll</path>
         </extension>
 
+        <!-- Local Transmitter -->
+        <extension>
+          <name>streaingTransmitter</name>
+          <path>Jukebox.Extensions.Transmitters.Streaming.dll</path>
+        </extension>
+
         <!-- Autoplay -->
         <extension>
           <name>autoplay</name>
